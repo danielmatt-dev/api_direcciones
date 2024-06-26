@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-
 from api_direcciones.municipio.core.entities.municipio import Municipio
 
 
