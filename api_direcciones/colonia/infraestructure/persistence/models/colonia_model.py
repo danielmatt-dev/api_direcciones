@@ -1,8 +1,8 @@
 from django.db import models
 
-from api_direcciones.estado.infraestructure.persistence.models.estado_model import EstadoModel
+from api_direcciones.municipio.infraestructure.persistence.models.municipio_model import MunicipioModel
 
 
-class MunicipioModel(models.Model):
+class ColoniaModel(models.Model):
     nombre = models.CharField(max_length=50)
-    estado = models.ForeignKey(EstadoModel, on_delete=models.PROTECT, related_name="id_estado")
+    municipio = models.ForeignKey(MunicipioModel, on_delete=models.PROTECT, related_name="id_municipio")
