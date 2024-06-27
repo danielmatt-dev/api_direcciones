@@ -13,7 +13,10 @@ class Direccion:
     pais: str
 
 
-class DireccionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Direccion
-        fields = '__all__'
+class DireccionSerializer(serializers.Serializer):
+    codigo_postal = serializers.CharField(max_length=5)
+    colonias = serializers.ListField(child=serializers.CharField(max_length=100))
+    estado = serializers.CharField(max_length=50)
+    ciudad = serializers.CharField(max_length=50)
+    asentamiento = serializers.CharField(max_length=25)
+    pais = serializers.CharField(max_length=10)
