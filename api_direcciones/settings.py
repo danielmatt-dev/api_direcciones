@@ -127,5 +127,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INJECTOR_MODULES = [
-    'app_module.AppModule',
+    'injector_modules.AppModule',
 ]
