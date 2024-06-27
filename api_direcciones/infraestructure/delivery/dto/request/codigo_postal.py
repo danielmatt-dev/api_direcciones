@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from rest_framework import serializers
 
 
@@ -7,9 +8,9 @@ class CodigoPostalSerializer(serializers.Serializer):
         min_length=5,
         max_length=5,
         validators=[
-            serializers.RegexField(
+            RegexValidator(
                 regex=r'^\d{5}$',
-                error_messages='El código postal debe ser un número de 5 dígitos'
+                message='El código postal debe ser un número de 5 dígitos'
             )
         ]
     )

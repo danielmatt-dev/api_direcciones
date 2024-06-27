@@ -1,4 +1,5 @@
 from typing import List
+from injector import inject
 
 from api_direcciones.core.entities.entities import Colonia
 from api_direcciones.core.port.repository import Repository
@@ -7,6 +8,7 @@ from api_direcciones.infraestructure.persistence.models.models import ColoniaMod
 
 class Adapter(Repository):
 
+    @inject
     def __init__(self, mapper_entities):
         self.mapper = mapper_entities
 
