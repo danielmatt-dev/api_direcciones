@@ -1,4 +1,3 @@
-# factories.py
 from injector import Injector
 
 from api_direcciones.core.use_cases.buscar_colonias import BuscarColonias

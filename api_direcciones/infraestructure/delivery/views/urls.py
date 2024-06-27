@@ -1,6 +1,6 @@
 from django.urls import path
 
-from factories import get_direcciones_factory
+from api_direcciones.infraestructure.config.direccion_view_factories import get_direcciones_factory
 
 direccion_path = 'direcciones'
 
