@@ -5,5 +5,5 @@ from api_direcciones.infraestructure.config.direccion_view_factories import get_
 direccion_path = 'direcciones'
 
 urlpatterns = [
-    path(f'{direccion_path}/<int:codigo_postal>/', get_direcciones_factory, name='direccion_view')
+    path(f'{direccion_path}/<str:codigo_postal>/', get_direcciones_factory, name='direccion_view')
 ]
