@@ -7,16 +7,17 @@ from api_direcciones.infraestructure.delivery.dto.response.direccion import Dire
 
 
 @api_view(['GET'])
-def get_direcciones(request, codigo_postal: int, buscar_colonias, mapper_dto):
+@permissions_classes([permissions.IsAuthenticated])
+def get_direcciones(request, codigo_postal: str, buscar_colonias, mapper_dto):
 
     serializer = CodigoPostalSerializer(data={'codigo_postal': codigo_postal})
     if not serializer.is_valid():
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    colonias = buscar_colonias.execute(codigo_postal)
+    colonias = buscar_colonias.execute(int(codigo_postal))
     if not colonias:
         return Response({'error': 'No se encontraron colonias'}, status=status.HTTP_404_NOT_FOUND)
 
     direccion = mapper_dto.to_direccion(colonias)
     serializer = DireccionSerializer(direccion)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.wdata, status=status.HTTP_200_OK)
