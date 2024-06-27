@@ -1,0 +1,18 @@
+from abc import ABC, abstractmethod
+
+from api_direcciones.core.entities.entities import Estado, Municipio, Colonia
+
+
+class Mapper(ABC):
+
+    @abstractmethod
+    def to_entity_estado(self, model) -> Estado:
+        pass
+
+    @abstractmethod
+    def to_entity_municipio(self, model) -> Municipio:
+        pass
+
+    @abstractmethod
+    def to_entity_colonia(self, model) -> Colonia:
+        pass

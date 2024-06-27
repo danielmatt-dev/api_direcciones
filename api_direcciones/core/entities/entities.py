@@ -1,5 +1,18 @@
 from dataclasses import dataclass
-from api_direcciones.municipio.core.entities.municipio import Municipio
+
+
+@dataclass
+class Estado:
+    id_estado: int
+    nombre: str
+    pais: str = 'México'
+
+
+@dataclass
+class Municipio:
+    id_municipio: int
+    nombre: str
+    estado: Estado
 
 
 @dataclass
