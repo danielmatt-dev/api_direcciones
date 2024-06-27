@@ -7,7 +7,7 @@ from api_direcciones.core.entities.entities import Estado, Municipio, Colonia
 class Mapper(ABC):
 
     @abstractmethod
-    def to_list_entity_estados(self, models) -> List[Estado]:
+    def to_list_entity_colonias(self, models) -> List[Colonia]:
         pass
 
     @abstractmethod

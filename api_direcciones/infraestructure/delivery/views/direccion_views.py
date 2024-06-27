@@ -1,7 +1,6 @@
 from injector import inject
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from rest_framework.views import APIView
 
 from api_direcciones.core.use_cases.buscar_colonias import BuscarColonias
@@ -18,18 +17,16 @@ class DireccionView(APIView):
         self.buscar_colonias = buscar_colonias
         self.mapper_dto = mapper_dto
 
-    def get(self, codigo_postal: int):
+    def get(self, request, codigo_postal: int):
 
-        serializer = CodigoPostalSerializer(data=codigo_postal)
+        serializer = CodigoPostalSerializer(data={'codigo_postal': codigo_postal})
         if not serializer.is_valid():
-            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        codigo_postal = serializer.validated_data['codigo_postal']
         colonias = self.buscar_colonias.execute(codigo_postal)
-
         if not colonias:
-            return Response(serializer.errors, status=HTTP_404_NOT_FOUND)
+            return Response({'error': 'No se encontraron colonias'}, status=status.HTTP_404_NOT_FOUND)
 
         direccion = self.mapper_dto.to_direccion(colonias)
-        serializer = DireccionSerializer(direccion, many=True)
+        serializer = DireccionSerializer(direccion)
         return Response(serializer.data, status=status.HTTP_200_OK)

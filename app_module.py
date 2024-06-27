@@ -14,17 +14,18 @@ class AppModule(Module):
 
     @singleton
     @provider
-    def provide_mapper(self) -> Mapper: return MapperImpl()
+    def provide_mapper(self) -> Mapper:
+        return MapperImpl()
 
     @singleton
     @provider
-    def provide_repository(self) -> Repository:
-        return Adapter(self.provide_mapper)
+    def provide_repository(self, mapper: Mapper) -> Repository:
+        return Adapter(mapper)
 
     @singleton
     @provider
-    def provider_buscar_colonias(self) -> BuscarColonias():
-        return BuscarColoniasImpl(self.provide_repository)
+    def provider_buscar_colonias(self, repository: Repository) -> BuscarColonias:
+        return BuscarColoniasImpl(repository)
 
     @singleton
     @provider

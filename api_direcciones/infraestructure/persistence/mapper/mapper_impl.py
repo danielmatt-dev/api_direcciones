@@ -6,7 +6,7 @@ from api_direcciones.infraestructure.persistence.mapper.mapper import Mapper
 
 class MapperImpl(Mapper):
 
-    def to_list_entity_estados(self, models) -> List[Estado]:
+    def to_list_entity_colonias(self, models) -> List[Estado]:
         return [self.to_entity_estado(model) for model in models]
 
     def to_entity_estado(self, model) -> Estado:
