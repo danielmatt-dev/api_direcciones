@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from api_direcciones.infraestructure.delivery.dto.request.codigo_postal import CodigoPostalSerializer
@@ -7,6 +8,7 @@ from api_direcciones.infraestructure.delivery.dto.response.direccion import Dire
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_direcciones(request, codigo_postal: str, buscar_colonias, mapper_dto):
 
     serializer = CodigoPostalSerializer(data={'codigo_postal': codigo_postal})
