@@ -17,15 +17,12 @@ from api_direcciones.infraestructure.delivery.dto.response.direccion import Dire
 def post_crear_usuario(request, verificar_usuario, crear_cuenta, mapper_dto):
     user_serializer = UsuarioSerializer(data=request.data)
 
-    print('Desserializando')
     if not user_serializer.is_valid():
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    print('Verificando')
     if verificar_usuario.execute(str(user_serializer.validated_data['username'])):
         return Response({'error': 'El usuario ya existe'}, status=status.HTTP_400_BAD_REQUEST)
 
-    print('Token')
     token = crear_cuenta.execute(
         mapper_dto.to_usuario(user_serializer.validated_data))
 
