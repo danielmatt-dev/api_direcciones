@@ -2,7 +2,7 @@ from injector import Module, singleton, provider
 
 from api_direcciones.core.port.repository import Repository
 from api_direcciones.core.use_cases.buscar_colonias import BuscarColonias
-from api_direcciones.core.use_cases.buscar_colonias_impl import BuscarColoniasImpl
+from api_direcciones.core.use_cases.impl.buscar_colonias_impl import BuscarColoniasImpl
 from api_direcciones.infraestructure.delivery.dto.mapper.mapper_dto import MapperDto, MapperDtoImpl
 from api_direcciones.infraestructure.persistence.adapter.adapter import Adapter
 from api_direcciones.infraestructure.persistence.mapper.mapper import Mapper

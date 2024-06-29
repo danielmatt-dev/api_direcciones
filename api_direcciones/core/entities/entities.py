@@ -23,3 +23,10 @@ class Colonia:
     municipio: Municipio
     asentamiento: str
     codigo_postal: int
+
+
+@dataclass
+class Usuario:
+    username: str
+    password: str
+    email: str
