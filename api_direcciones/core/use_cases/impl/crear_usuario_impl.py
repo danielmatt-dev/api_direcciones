@@ -9,7 +9,7 @@ class CrearUsuarioImpl(CrearUsuario):
 
     @inject
     def __init__(self, repository: Repository):
-        self._repository = repository
+        self.repository = repository
 
     def execute(self, usuario) -> Token:
-        return self._repository.crear_usuario(usuario)
+        return self.repository.crear_usuario(usuario)

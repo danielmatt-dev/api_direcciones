@@ -8,7 +8,7 @@ class VerificarExistenciaUsuarioImpl(VerificarExistenciaUsuario):
 
     @inject
     def __init__(self, repository: Repository):
-        self._repository = repository
+        self.repository = repository
 
-    def execute(self, username) -> bool:
-        return self._repository.verificar_existencia_usuario(username)
+    def execute(self, username: str) -> bool:
+        return self.repository.verificar_existencia_usuario(username)

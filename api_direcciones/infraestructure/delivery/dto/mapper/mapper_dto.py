@@ -32,15 +32,15 @@ class MapperDtoImpl(MapperDto):
             pais=entities[0].municipio.estado.pais
         )
 
-    def to_usuario(self, serializer) -> Usuario:
+    def to_usuario(self, data) -> Usuario:
         return Usuario(
-            username=serializer.username,
-            password=serializer.password,
-            email=serializer.email
+            username=data['username'],
+            password=data['password'],
+            email=data['email']
         )
 
     def to_auth_token(self, token) -> AuthToken:
         return AuthToken(
-            refresh=token,
-            access=token.access_token
+            refresh=str(token),
+            access=str(token.access_token)
         )
