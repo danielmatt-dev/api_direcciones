@@ -7,7 +7,8 @@ from api_direcciones.core.use_cases.impl.buscar_colonias_impl import BuscarColon
 from api_direcciones.core.use_cases.impl.crear_usuario_impl import CrearUsuarioImpl
 from api_direcciones.core.use_cases.impl.verificar_existencia_usuario_impl import VerificarExistenciaUsuarioImpl
 from api_direcciones.core.use_cases.verificar_existencia_usuario import VerificarExistenciaUsuario
-from api_direcciones.infraestructure.delivery.dto.mapper.mapper_dto import MapperDto, MapperDtoImpl
+from api_direcciones.infraestructure.delivery.dto.mapper.mapper_dto import MapperDto
+from api_direcciones.infraestructure.delivery.dto.mapper.mapper_dto_impl import MapperDtoImpl
 from api_direcciones.infraestructure.persistence.adapter.adapter import Adapter
 from api_direcciones.infraestructure.persistence.mapper.mapper import Mapper
 from api_direcciones.infraestructure.persistence.mapper.mapper_impl import MapperImpl
