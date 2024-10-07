@@ -5,3 +5,4 @@ django-getenv
 djangorestframework-simplejwt==5.2.2
 mysqlclient==2.2.4
 injector==0.21.0
+python-dotenv

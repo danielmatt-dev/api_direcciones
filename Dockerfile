@@ -42,8 +42,8 @@ COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 # Exponer el puerto 8000 para el servidor de Django
-EXPOSE 8000
+EXPOSE 9000
 
 # Configurar el script de entrada y comando para iniciar la aplicación usando el entorno virtual
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:9000"]

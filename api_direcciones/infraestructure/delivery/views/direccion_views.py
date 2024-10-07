@@ -36,7 +36,7 @@ def post_crear_usuario(request, verificar_usuario, crear_cuenta, mapper_dto):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_direcciones(codigo_postal: str, buscar_colonias, mapper_dto):
+def get_direcciones(request, codigo_postal: str, buscar_colonias, mapper_dto):
 
     serializer = CodigoPostalSerializer(data={'codigo_postal': codigo_postal})
     if not serializer.is_valid():
