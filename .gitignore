@@ -1,2 +1,18 @@
-.venv
-.idea
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos y carpetas de PyCharm
+.idea/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de registro
+*.log
+
+# Entorno de desarrollo
+*.env
