@@ -41,9 +41,13 @@ COPY entrypoint.sh /app/entrypoint.sh
 # Dar permisos de ejecución al script
 RUN chmod +x /app/entrypoint.sh
 
-# Exponer el puerto 8000 para el servidor de Django
+# Exponer el puerto 9000 para el servidor de Django
 EXPOSE 9000
 
 # Configurar el script de entrada y comando para iniciar la aplicación usando el entorno virtual
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:9000"]
+
+# Añadir un HEALTHCHECK para monitorear la salud del contenedor
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl --fail http://localhost:9000 || exit 1
