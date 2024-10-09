@@ -18,15 +18,15 @@ RUN python -m venv /opt/venv
 # Añadir el entorno virtual al PATH para asegurarse de que se use por defecto
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Copiar el archivo de requisitos al contenedor e instalar dependencias del sistema
-COPY requirements.txt .
-
-# Instalar las dependencias del sistema necesarias para librerías como mysqlclient
+# Instalar dependencias del sistema necesarias para librerías como mysqlclient
 RUN apt-get update && apt-get install -y \
     build-essential \
     default-libmysqlclient-dev \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
+
+# Copiar el archivo de requisitos al contenedor e instalar dependencias del sistema
+COPY requirements.txt .
 
 # Instalar las dependencias de Python usando pip dentro del entorno virtual
 RUN pip install --upgrade pip && \
@@ -41,13 +41,13 @@ COPY entrypoint.sh /app/entrypoint.sh
 # Dar permisos de ejecución al script
 RUN chmod +x /app/entrypoint.sh
 
-# Exponer el puerto 9000 para el servidor de Django
-EXPOSE 9000
+# Exponer el puerto 8000 para el servidor de Django
+EXPOSE 8000
 
 # Configurar el script de entrada y comando para iniciar la aplicación usando el entorno virtual
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:9000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-# Añadir un HEALTHCHECK para monitorear la salud del contenedor
+# Añadir un HEALTHCHECK para monitorear la salud del contenedor usando Python en lugar de curl
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-  CMD curl --fail http://localhost:9000 || exit 1
+  CMD python -c "import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(('localhost', 8000))" || exit 1
